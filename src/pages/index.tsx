@@ -1,5 +1,17 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Navbar } from "@/components/Navbar";
+import { PageHeader, PageSubheader, SectionHeader } from "@/components/Headers";
+import { STEMButton } from "@/components/Buttons";
+import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/Layouts/PageLayout";
+import { useRef } from "react";
+import { ChallengeContent } from "@/components/Content/ChallengeContent";
+import { SectionLayout } from "@/components/Layouts/SectionLayout";
+import { GamesContent } from "@/components/Content/GamesContent";
+import { ImpactContent } from "@/components/Content/ImpactContent";
+import { ResearchContent } from "@/components/Content/ResearchContent";
+import { ContactContent } from "@/components/Content/ContactContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,104 +24,129 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  const homeRef = useRef<HTMLDivElement | null>(null);
+  const challengeRef = useRef<HTMLDivElement | null>(null);
+  const gameRef = useRef<HTMLDivElement | null>(null);
+  const impactRef = useRef<HTMLDivElement | null>(null);
+  const researchRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
+
+  const sections=[
+    {
+      title: "The Challenge We're Solving",
+      subtitle: "Traditional education methods are failing to engage students in STEM subjects, creating gaps in learning and limiting future opportunities.",
+      ref: challengeRef,
+      theme: "bg-gray-light text-black-light",
+      content: <ChallengeContent />
+    },
+    {
+      title: "Our Game-Based Solutions",
+      subtitle: "Evidence-based educational games that make STEM learning fun, relevant, and accessible for all students.",
+      ref: gameRef,
+      theme: "bg-white text-black-light",
+      content: <GamesContent />
+    },
+    {
+      title: "Proven Educational Impact",
+      subtitle: "Our games deliver measurable results that advance learnig equity and inspire STEM career engagement.",
+      ref: impactRef,
+      theme: "bg-gradient-to-br from-periwinkle to-blue text-white",
+      content: <ImpactContent />
+    },
+    {
+      title: "Research & Insights",
+      subtitle: "Discover the latest findings from our evidence-based research and practical insights for transforming STEM education.",
+      ref: researchRef,
+      theme: "bg-gray-light text-black-light",
+      content: <ResearchContent />
+    },
+    {
+      title: "Ready to Transform Learning?",
+      subtitle: "Join thousands of educators and students already using STEMPlay Labs games to engage and improve learning outcomes.",
+      ref: contactRef,
+      theme: "bg-white text-black-light",
+      content: <ContactContent />
+    }
+  ]
+
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
+    <PageLayout
+      homeRef={homeRef}
+      challengeRef={challengeRef}
+      gameRef={gameRef}
+      impactRef={impactRef}
+      researchRef={researchRef}
+      contactRef={contactRef}
     >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <div  className="relative flex flex-col items-center justify-center gap-4 px-8 py-24 md:px-48 bg-gradient-to-br from-purple to-periwinkle w-full h-screen sm:h-[85vh]">
+        <div ref={homeRef} className="absolute top-0 left-0 opacity-0" />
+        
+        <div className="w-full h-full z-10 relative flex flex-col md:flex-row items-center justify-center gap-4">
+          <div className="flex items-center justify-center z-10">
+            <img
+              src="/images/STEMPlay Labs Logo Vertical 1 Color White.png"
+              alt="STEMPlay Labs Logo"
+              className="w-52 sm:w-2/3 md:w-full min-w-48 max-w-96 aspect-auto" 
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+
+          <div className="md:flex-1 flex flex-col items-center justify-center gap-4 md:gap-12 text-center text-white z-10 bg-white/0 md:bg-white/10 p-4 md:p-8 rounded-xl">
+            <PageSubheader title="Game It! Solve It!" />
+
+            <p className="text-white text-center w-full">
+              Transforming how students learn math and science by turning real-world challenges into engaging game-based learning experiences.
+            </p>
+
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <STEMButton
+                label="Shop Our Games"
+                action={() => { gameRef.current?.scrollIntoView({ behavior: 'smooth' }) }}
+              />
+
+              <STEMButton
+                label="See the Magic"
+                hollow
+                action={() => { impactRef.current?.scrollIntoView({ behavior: 'smooth' }) }}
+              />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+        <div className="absolute z-0 top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            src={"/videos/AtomCloud-compressed.mp4"}
+            itemType="video/mp4"
+            className="absolute left-0 top-1/2 -translate-y-1/2 blur-sm h-[4000px] aspect-video object-cover opacity-10 "
+            ref={video => {
+              if (video) video.playbackRate = 0.25;
+            }}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        </div>
+      </div>
+
+      {sections.map((section, idx) => (
+        <SectionLayout
+          key={idx}
+          title={section.title}
+          subtitle={section.subtitle}
+          ref={section.ref}
+          theme={section.theme}
+          children={section.content}
+        />
+      ))}
+
+      {/* <ChallengeSection ref={challengeRef} />
+
+      <GamesSection ref={gameRef} />
+
+      <ImpactScection ref={impactRef} />
+
+      <ResearchSection ref={researchRef} />
+
+      <ContactSection ref={contactRef} /> */}
+    </PageLayout>
+  )
 }

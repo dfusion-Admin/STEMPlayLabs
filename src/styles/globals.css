@@ -5,7 +5,37 @@
   --foreground: #171717;
 }
 
+@font-face {
+  font-family: "Kallisto Heavy";
+  src: url("/fonts/Kallisto_Heavy.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/OpenSans-Variable.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+
 @theme inline {
+  --font-kallisto-heavy: "Kallisto Heavy", sans-serif;
+  --font-open-sans: "Open Sans", sans-serif;
+
+  --color-purple: #6b458d;
+  --color-purple-light: #a890bd;
+  --color-periwinkle: #5d61ac;
+  --color-periwinkle-light: #a1a1ce;
+  --color-blue: #67b1e1;
+  --color-blue-light: #b9d7f0;
+  --color-lavender: #dec2da;
+  --color-lavender-light: #ecdeeb;
+  --color-black: #231f20;
+  --color-black-light: #57585a;
+  --color-gray: #9f9f9f;
+  --color-gray-light: #f4f4f4;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -14,7 +44,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #5d61ac;
     --foreground: #ededed;
   }
 }
