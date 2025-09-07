@@ -13,16 +13,6 @@ import { ImpactContent } from "@/components/Content/ImpactContent";
 import { ResearchContent } from "@/components/Content/ResearchContent";
 import { ContactContent } from "@/components/Content/ContactContent";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default function Home() {
   const homeRef = useRef<HTMLDivElement | null>(null);
   const challengeRef = useRef<HTMLDivElement | null>(null);
