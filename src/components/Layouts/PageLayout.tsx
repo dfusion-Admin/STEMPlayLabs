@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject, useRef } from "react";
+import React, { ReactNode, RefObject } from "react";
 import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 

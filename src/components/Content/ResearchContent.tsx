@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { RefObject } from "react";
+import React from "react";
 import { STEMButton } from "../Buttons";
 
 export const ResearchContent = () => {

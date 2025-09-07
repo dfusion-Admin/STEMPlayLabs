@@ -1,9 +1,5 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Navbar } from "@/components/Navbar";
-import { PageHeader, PageSubheader, SectionHeader } from "@/components/Headers";
+import { PageSubheader } from "@/components/Headers";
 import { STEMButton } from "@/components/Buttons";
-import { Footer } from "@/components/Footer";
 import { PageLayout } from "@/components/Layouts/PageLayout";
 import { useRef } from "react";
 import { ChallengeContent } from "@/components/Content/ChallengeContent";
@@ -124,19 +120,10 @@ export default function Home() {
           subtitle={section.subtitle}
           ref={section.ref}
           theme={section.theme}
-          children={section.content}
-        />
+        >
+          {section.content}
+        </SectionLayout>
       ))}
-
-      {/* <ChallengeSection ref={challengeRef} />
-
-      <GamesSection ref={gameRef} />
-
-      <ImpactScection ref={impactRef} />
-
-      <ResearchSection ref={researchRef} />
-
-      <ContactSection ref={contactRef} /> */}
     </PageLayout>
   )
 }

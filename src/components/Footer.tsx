@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { ListHeader, PageSubheader } from "./Headers";
+import { ListHeader } from "./Headers";
 
 export const Footer = () => {
     const footerLinks = [

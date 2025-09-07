@@ -1,6 +1,5 @@
 import { Popover, PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
-import Link from "next/link";
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useState } from "react";
 
 interface NavbarProps {
     homeRef: RefObject<HTMLDivElement | null>;
