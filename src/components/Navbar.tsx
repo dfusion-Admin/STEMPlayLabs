@@ -3,6 +3,7 @@ import React, { RefObject, useEffect, useState } from "react";
 
 interface NavbarProps {
     homeRef: RefObject<HTMLDivElement | null>;
+    aboutRef: RefObject<HTMLDivElement | null>;
     challengeRef: RefObject<HTMLDivElement | null>;
     gameRef: RefObject<HTMLDivElement | null>;
     impactRef: RefObject<HTMLDivElement | null>;
@@ -10,7 +11,7 @@ interface NavbarProps {
     contactRef: RefObject<HTMLDivElement | null>;
 }
 
-export const Navbar = ({ homeRef, challengeRef, gameRef, impactRef, researchRef, contactRef} : NavbarProps) => {
+export const Navbar = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, researchRef, contactRef} : NavbarProps) => {
     const [showHomeButton, setShowHomeButton] = useState(false);
     const [navbarColor, setNavbarColor] = useState("backdrop-blur-md bg-purple/0");
     
@@ -24,6 +25,11 @@ export const Navbar = ({ homeRef, challengeRef, gameRef, impactRef, researchRef,
             label: "Impact",
             key: "impact",
             onClick: () => { impactRef.current?.scrollIntoView({ behavior: 'smooth' }) }
+        },
+        {
+            label: "About Us",
+            key: "about-us",
+            onClick: () => { aboutRef.current?.scrollIntoView({ behavior: 'smooth' }) }
         },
         {
             label: "Research & Insights",
