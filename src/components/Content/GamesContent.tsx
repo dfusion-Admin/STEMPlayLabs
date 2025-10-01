@@ -139,11 +139,64 @@ export const GamesContent = () => {
     return (
         <div className="bg-gradient-to-br from-periwinkle to-purple p-2 rounded-xl flex flex-col lg:flex-row-reverse gap-4 w-full">
             <div className="flex-1 w-full flex flex-col lg:flex-row-reverse justify-center items-center gap-4">
-                <div className="relative flex justify-center items-center w-full min-h-[450px] h-full lg:w-auto aspect-video bg-black border-white border-2 overflow-hidden rounded-lg">
+                <div className="flex lg:hidden flex-1 flex-col gap-4 lg:pl-8 py-4 w-full">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <Link
+                            href={solutions[activeIndex].link}
+                            target="_blank"
+                            className="text-xl lg:text-4xl text-center lg:text-left font-bold  text-white hover:text-blue font-kallisto-heavy uppercase"
+                        >
+                            {solutions[activeIndex].title}
+                        </Link>
+
+                        <div className="flex flex-col items-center justify-end md:items-end gap-2 relative">
+                            <div className="flex bg-lavender px-4 py-1 rounded-full w-fit">
+                                <p className="font-bold text-black text-nowrap">
+                                    {solutions[activeIndex].range}
+                                </p>
+                            </div>
+
+                            {solutions[activeIndex].inDevelopment && (
+                                <div className="flex bg-gray px-4 py-1 rounded-full w-fit">
+                                    <p className="font-bold text-black">
+                                        In Development
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="flex flex-1 flex-row justify-start items-start gap-4 rounded-md">
+                        <p className="text-center md:text-left text-white flex-1 flex items-center">
+                            {solutions[activeIndex].description}
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-end">
+                        <STEMButton
+                            hollow
+                            // fullWidth
+                            icon={faLightbulb}
+                            label="Learn More"
+                            action={() => window.open(solutions[activeIndex].learnLink, "_blank")}
+                        />
+
+                        {!solutions[activeIndex].inDevelopment && (
+                            <STEMButton
+                                // fullWidth
+                                icon={faCartPlus}
+                                label="Buy Now"
+                                action={() => window.open(solutions[activeIndex].shopLink, "_blank")}
+                            />
+                        )}
+                    </div>
+                </div>
+                
+                <div className="relative flex justify-center items-center w-full max-h-150 aspect-square bg-red-700 border-white border-2 overflow-hidden rounded-lg">
                     <img
                         src={solutions[activeIndex].slides[activeSlide].imageUrl}
                         alt={`${solutions[activeIndex].title} - ${solutions[activeIndex].slides[activeSlide].caption} Screenshot`}
-                        className="w-full h-full asepct-video bg-black object-cover object-center rounded-t-lg lg:rounded-lg overflow-hidden flex justify-center items-center text-center"
+                        className="object-cover object-center h-full w-full rounded-t-lg lg:rounded-lg overflow-hidden"
                     />
 
                     <div className="absolute bottom-0 -transform-x-1/2 w-full bg-white px-8 pb-10 pt-2">
@@ -163,9 +216,9 @@ export const GamesContent = () => {
                     </ul>
                 </div>
 
-                <div className="flex flex-col h-full gap-4 w-full">
-                    <div className="flex-1 flex flex-col gap-4 px-8">
-                        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:h-24">
+                <div className="flex flex-col h-full w-full ">
+                    <div className="hidden lg:flex flex-1 flex-col gap-4 lg:pl-8 py-4">
+                        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                             <Link
                                 href={solutions[activeIndex].link}
                                 target="_blank"
@@ -191,13 +244,13 @@ export const GamesContent = () => {
                             </div>
                         </div>
 
-                        <div className="h-24 flex flex-row justify-start items-center gap-4 rounded-md">
-                            <p className="text-left text-white flex-1 flex items-center">
+                        <div className="flex flex-1 flex-row justify-start items-start gap-4 rounded-md">
+                            <p className="text-center md:text-left text-white flex-1 flex items-center">
                                 {solutions[activeIndex].description}
                             </p>
                         </div>
 
-                        <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-start">
+                        <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-end">
                             <STEMButton
                                 hollow
                                 // fullWidth
@@ -217,12 +270,12 @@ export const GamesContent = () => {
                         </div>
                     </div>
                     
-                    <ul className="flex-1 flex flex-wrap flex-row gap-2 justify-between items-center px-8">
+                    <ul className="flex flex-row gap-8 justify-center lg:justify-start items-center px-8 p-4">
                         {solutions.map((solution, idx) => (
-                            <li key={idx} className="flex-1 flex aspect-square w-24 items-center justify-center"> 
+                            <li key={idx} className="flex aspect-square w-fit items-center justify-center"> 
                                 <button
                                     onClick={() => setActiveIndex(idx)}
-                                    className={`${activeIndex == idx ? "border-4 border-blue-light hover:border-white bg-white" : "hover:border-4 border-transparent hover:border-blue"} max-h-48 max-w-48 aspect-square rounded-full overflow-hidden hover:cursor-pointer duration-300`}
+                                    className={`${activeIndex == idx ? "border-4 border-blue-light hover:border-white bg-white" : "hover:border-4 border-transparent hover:border-blue"} min-h-24 max-h-36 aspect-square rounded-full overflow-hidden hover:cursor-pointer duration-300`}
                                 >
                                     <img
                                         src={solution.logo}
