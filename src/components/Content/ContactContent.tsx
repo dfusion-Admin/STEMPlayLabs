@@ -1,23 +1,27 @@
 import React from "react";
 import { STEMButton } from "../Buttons";
+import { faEnvelope, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 export const ContactContent = () => {
     const contactItems = [
         {
             title: "For Educators",
+            icon: faEnvelope,
             summary: "Schedule a personalized demo, start with a free trial, or explore bulk pricing options.",
             buttonText: "Contact BA Laris",
             link: "mailto:ba.laris@dfusioninc.com?subject=STEMPlay%20Labs%20-%20Educator%20Inquiries&body=I%20am%20interested%20in%20learning%20more%20about%20STEMPlay%20Labs.%20Please%20provide%20more%20information%20about%3A%0D%0A%0D%0A- Demo%0D%0A- Free%20Trial%0D%0A- Bulk%20Pricing%0D%0A%0D%0AThank%20you!%0D%0A",
         },
         {
             title: "Research Partnerships",
+            icon: faEnvelope,
             summary: "Collaborate with us on educational research and development projects.",
             buttonText: "Contact Mia Barrett",
             link: "mailto:mia.barrett@dfusioninc.com?subject=STEMPlay%20Labs%20-%20Research%20Partnerships&body=I%20am%20interested%20in%20learning%20more%20about%20research%20partnerships%20with%20STEMPlay%20Labs.%20Please%20provide%20more%20information.%0D%0A%0D%0AThank%20you!%0D%0A",
         },
         {
             title: "Learn More",
-            summary: "Visit our main websit or specific game pages for detailed information.",
+            icon: faPaperPlane,
+            summary: "Visit our main website or specific game pages for detailed information.",
             buttonText: "Visit dfusion",
             link: "https://dfusioninc.com/",
         }
@@ -36,6 +40,8 @@ export const ContactContent = () => {
                     </p>
 
                     <STEMButton
+                        dark
+                        icon={item.icon}
                         label={item.buttonText}
                         action={() => { window.open(item.link, "_blank") }}
                     />

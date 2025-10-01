@@ -23,14 +23,20 @@ export const ChallengeContent = () => {
     return (
         <ul className="flex flex-col md:flex-row justify-between w-full gap-4">
             {challengeStats.map((stat, idx) => (
-                <li key={idx} className="flex w-full md:w-auto flex-col items-center gap-2 p-4 rounded-lg bg-white">
-                    <h3 className="text-2xl font-bold font-kallisto-heavy uppercase text-periwinkle-light">
-                        {stat.highlight}
-                    </h3>
-                    
-                    <p className="text-center md:w-3/4">
-                        {stat.subtext}
-                    </p>
+                <li key={idx} className="group/challenge relative flex w-full md:w-auto flex-col items-center gap-2 rounded-lg bg-white">
+                    <div className="group-hover/challenge:bottom-4 bottom-0 relative w-full h-full flex flex-col justify-center items-center gap-4 bg-white z-10 p-4 rounded-md duration-300">
+                        <h3 className="text-2xl font-bold font-kallisto-heavy uppercase text-periwinkle-light">
+                            {stat.highlight}
+                        </h3>
+                        
+                        <p className="text-center md:w-3/4">
+                            {stat.subtext}
+                        </p>
+                    </div>
+
+                    <div
+                        className="absolute bg-purple w-full h-full rounded-lg"
+                    />
                 </li>
             ))}
         </ul>

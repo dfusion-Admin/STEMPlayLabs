@@ -5,18 +5,20 @@ import { Footer } from "../Footer";
 interface PageLayoutProps {
     children: ReactNode;
     homeRef: RefObject<HTMLDivElement | null>;
+    aboutRef: RefObject<HTMLDivElement | null>;
     challengeRef: RefObject<HTMLDivElement | null>;
     gameRef: RefObject<HTMLDivElement | null>;
     impactRef: RefObject<HTMLDivElement | null>;
     researchRef: RefObject<HTMLDivElement | null>;
     contactRef: RefObject<HTMLDivElement | null>;
 }
-export const PageLayout = ({ children, homeRef, challengeRef, gameRef,impactRef, researchRef, contactRef }: PageLayoutProps) => {
+export const PageLayout = ({ children, homeRef, aboutRef, challengeRef, gameRef,impactRef, researchRef, contactRef }: PageLayoutProps) => {
     return (
         <main className="w-full min-h-screen flex flex-col text-black-light">
             <Navbar
                 homeRef={homeRef}
                 challengeRef={challengeRef}
+                aboutRef={aboutRef}
                 gameRef={gameRef}
                 impactRef={impactRef}
                 researchRef={researchRef}
@@ -27,7 +29,15 @@ export const PageLayout = ({ children, homeRef, challengeRef, gameRef,impactRef,
                 {children}
             </section>
 
-            <Footer />
+            <Footer
+                homeRef={homeRef}
+                challengeRef={challengeRef}
+                aboutRef={aboutRef}
+                gameRef={gameRef}
+                impactRef={impactRef}
+                researchRef={researchRef}
+                contactRef={contactRef}
+            />
         </main>
     )
 }

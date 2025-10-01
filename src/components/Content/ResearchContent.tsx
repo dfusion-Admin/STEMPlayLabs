@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { STEMButton } from "../Buttons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export const ResearchContent = () => {
     const content = [
@@ -94,7 +95,9 @@ export const ResearchContent = () => {
 
             <div className="flex justify-center w-full">
                 <STEMButton
+                    dark
                     label="View All Posts"
+                    icon={faMagnifyingGlass}
                     action={() => { window.open("https://dfusioninc.com/insights/", "_blank") }}
                 />
             </div>
