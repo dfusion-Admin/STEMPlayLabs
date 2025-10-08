@@ -1,17 +1,17 @@
 import { Popover, PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
 import React, { RefObject, useEffect, useState } from "react";
+import Image from "next/image";
 
 interface NavbarProps {
     homeRef: RefObject<HTMLDivElement | null>;
     aboutRef: RefObject<HTMLDivElement | null>;
-    challengeRef: RefObject<HTMLDivElement | null>;
     gameRef: RefObject<HTMLDivElement | null>;
     impactRef: RefObject<HTMLDivElement | null>;
     researchRef: RefObject<HTMLDivElement | null>;
     contactRef: RefObject<HTMLDivElement | null>;
 }
 
-export const Navbar = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, researchRef, contactRef} : NavbarProps) => {
+export const Navbar = ({ homeRef, aboutRef, gameRef, impactRef, researchRef, contactRef} : NavbarProps) => {
     const [showHomeButton, setShowHomeButton] = useState(false);
     const [navbarColor, setNavbarColor] = useState("backdrop-blur-md bg-purple/0");
     
@@ -47,7 +47,6 @@ export const Navbar = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, re
         const handleScroll = () => {
             const sections = [
                 { ref: homeRef, color: "backdrop-blur-md bg-purple/0" },
-                { ref: challengeRef, color: "bg-white shadow-lg" },
                 { ref: gameRef, color: "bg-white shadow-lg" },
                 { ref: impactRef, color: "bg-white shadow-lg" },
                 { ref: researchRef, color: "bg-white shadow-lg" },
@@ -83,19 +82,20 @@ export const Navbar = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, re
                     onClick={() => { homeRef.current?.scrollIntoView({ behavior: 'smooth' }) }}
                     className={`gap-2 shrink-0 py-2 hover:curor-pointer w-fit`}
                 >
-                    <img
-                        // src="/images/STEMPlay Labs Logo Horizontal 1 Color White.png"
+                    <Image
+                        width={1080}
+                        height={720}
                         src="/images/STEMPlay Labs Logo Horizontal Full Color.png"
                         alt="STEMPlay Labs Logo"
                         onClick={() => { homeRef.current?.scrollIntoView({ behavior: 'smooth' }) }}
-                        className={`${showHomeButton ? "opacity-100" : "opacity-0 pointer-events-none"} h-12 aspect-auto hover:cursor-pointer duration-1000`}
+                        className={`${showHomeButton ? "opacity-100" : "opacity-0 pointer-events-none"} h-12 w-full aspect-auto hover:cursor-pointer duration-1000`}
                     />
                 </button>
 
                 {/* Desktop Navigation */}
                 <ul className="hidden md:flex flex-1 justify-end items-center gap-2 -mr-4">
                     {navLinks.map((link,i) => (
-                        <li key={link.key}
+                        <li key={`${i}-${link.key}`}
                         >
                             <button 
                                 onClick={link.onClick}
@@ -134,17 +134,19 @@ export const Navbar = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, re
                                 <PopoverPanel className={`${showHomeButton ? 'rounded-bl-lg' : 'rounded-l-lg'} bg-black absolute h-fit duration-1000 top-13 -right-8 w-fit focus:outline-none`}>
                                     <ul className="flex flex-col">
                                         {navLinks.map((link,i) => (
-                                            <button 
-                                                key={link.key}
-                                                onClick={() => {
-                                                    link.onClick();
-                                                    // Close the popover after clicking a link
-                                                    (document.activeElement as HTMLElement)?.blur();
-                                                }}
-                                                className={`${showHomeButton ? "text-blue hover:brightness-125" : "text-white hover:text-blue hover:brightness-125"} hover:cursor-pointer font-bold w-full text-right px-4 pr-8 text-nowrap py-2 duration-300`}
-                                            >
-                                                {link.label}
-                                            </button>
+                                           <li key={`${i}-${link.key}`}>
+                                                <button 
+                                                    
+                                                    onClick={() => {
+                                                        link.onClick();
+                                                        // Close the popover after clicking a link
+                                                        (document.activeElement as HTMLElement)?.blur();
+                                                    }}
+                                                    className={`${showHomeButton ? "text-blue hover:brightness-125" : "text-white hover:text-blue hover:brightness-125"} hover:cursor-pointer font-bold w-full text-right px-4 pr-8 text-nowrap py-2 duration-300`}
+                                                >
+                                                    {link.label}
+                                                </button>
+                                           </li>
                                         ))}
                                     </ul>
                                 </PopoverPanel>

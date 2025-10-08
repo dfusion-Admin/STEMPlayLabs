@@ -105,7 +105,7 @@ const FloatingIcons: React.FC = () => {
         return () => {
             running = false;
         };
-    }, [dimensions.width, dimensions.height]);
+    }, [dimensions, dimensions.width, dimensions.height]);
 
     // Animation loop
     useEffect(() => {
@@ -211,7 +211,7 @@ const FloatingIcons: React.FC = () => {
         return () => {
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
         };
-    }, [ready, dimensions.width, dimensions.height, dimensions.dpr]);
+    }, [ready, dimensions, dimensions.width, dimensions.height, dimensions.dpr]);
 
     return (
         <canvas

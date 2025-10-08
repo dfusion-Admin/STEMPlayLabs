@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FloatingIcons from "../FloatingIcons";
 import { CountUpNumber } from "../CountUpNumber";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleUp, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";

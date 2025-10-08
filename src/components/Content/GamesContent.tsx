@@ -1,10 +1,9 @@
-//@ts-nocheck
-
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { STEMButton } from "../Buttons";
 import { faCartPlus, faDownload, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { Disclosure, DisclosureButton, DisclosurePanel, Transition } from "@headlessui/react";
+import Image from "next/image";
 
 export const GamesContent = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -16,7 +15,7 @@ export const GamesContent = () => {
         "results",
         "resources",
     ]
-    const solutions = [
+    const solutions = useMemo(() => [
         {
             title: "STEMadium",
             infographic: "/downloads/Infographic-STEMadium.pdf",
@@ -159,37 +158,34 @@ export const GamesContent = () => {
                 }
             ],
         }
-    ]
+    ], []);
 
-    // useEffect(() => {
-    //     if (activeIndex == solutions.length-1 && activeSlide == solutions[activeIndex].slides.length - 1) {
-    //         const resetTimer = setTimeout(() => {
-    //             setActiveIndex(0);
-    //             setActiveSlide(0);
-    //         }, 5000); // Reset to first slide after last slide
+    useEffect(() => {
+        if (activeIndex == solutions.length-1 && activeSlide == solutions[activeIndex].slides.length - 1) {
+            const resetTimer = setTimeout(() => {
+                setActiveIndex(0);
+                setActiveSlide(0);
+            }, 5000); // Reset to first slide after last slide
 
-    //         return () => clearTimeout(resetTimer);
-    //     }
-    //     setActiveSlide(0);
-    // }, [activeIndex]);
+            return () => clearTimeout(resetTimer);
+        }
+        setActiveSlide(0);
 
+        if (activeSlide < solutions[activeIndex].slides.length - 1) {
+            const slideTimer = setTimeout(() => {
+                setActiveSlide(activeSlide + 1);
+            }, 5000); // Change slide every 6 seconds
 
-    // useEffect(() => {
-    //     if (activeSlide < solutions[activeIndex].slides.length - 1) {
-    //         const slideTimer = setTimeout(() => {
-    //             setActiveSlide(activeSlide + 1);
-    //         }, 5000); // Change slide every 6 seconds
+            return () => clearTimeout(slideTimer);
+        } else {
+            const resetTimer = setTimeout(() => {
+                setActiveIndex((prev) => (prev + 1) % solutions.length);
+                setActiveSlide(0);
+            }, 5000); // Reset to first slide after last slide
 
-    //         return () => clearTimeout(slideTimer);
-    //     } else {
-    //         const resetTimer = setTimeout(() => {
-    //             setActiveIndex((prev) => (prev + 1) % solutions.length);
-    //             setActiveSlide(0);
-    //         }, 5000); // Reset to first slide after last slide
-
-    //         return () => clearTimeout(resetTimer);
-    //     }
-    // }, [activeSlide]);
+            return () => clearTimeout(resetTimer);
+        }
+    }, [solutions, activeIndex, activeSlide]);
 
     return (
         <div className="flex flex-col lg:flex-row justify-center items-start w-full ">
@@ -200,9 +196,11 @@ export const GamesContent = () => {
                             onClick={() => setActiveIndex(idx)}
                             className={`${activeIndex == idx ? "border-4 border-periwinkle hover:bg-periwinkle-light bg-periwinkle" : "border-4 border-blue hover:bg-blue-light bg-blue"} flex items-center p-4 pb-6 lg:p-4 lg:pr-6 justify-center  min-h-24 max-h-36 aspect-square rounded-t-xl lg:rounded-t-none lg:rounded-l-xl border-b-0 lg:border-b-4 lg:border-r-0 overflow-hidden hover:cursor-pointer duration-300`}
                         >
-                            <img
+                            <Image
                                 src={solution.logo}
                                 alt={`${solution.title} Logo`}
+                                width={1080}
+                                height={720}
                                 className={`${activeIndex == idx ? "" : ""} aspect-square  object-center text-white flex justify-center items-center text-center`}
                             />
                         </button>
@@ -262,7 +260,9 @@ export const GamesContent = () => {
                             </div>
 
                             <div className="relative flex lg:hidden justify-center items-center w-full max-h-150 aspect-square border-white border-2 overflow-hidden rounded-lg">
-                                <img
+                                <Image
+                                    width={1080}
+                                    height={720}
                                     src={solutions[activeIndex].slides[activeSlide].imageUrl}
                                     alt={`${solutions[activeIndex].title} - ${solutions[activeIndex].slides[activeSlide].caption} Screenshot`}
                                     className="object-cover object-center h-full w-full overflow-hidden"
@@ -299,7 +299,9 @@ export const GamesContent = () => {
                                                 </DisclosureButton>
 
                                                 <DisclosurePanel className="text-white italic px-4 py-2 border-4 border-blue rounded-b-lg w-full h-full">
-                                                    {solutions[activeIndex][tag as keyof typeof solutions[0]]}
+                                                    { // @ts-expect-error --- IGNORE ---
+                                                        solutions[activeIndex][tag]
+                                                    }
                                                 </DisclosurePanel>
                                             </>
                                         )}                  
@@ -337,7 +339,7 @@ export const GamesContent = () => {
                                                                     Timeframe:
                                                                 </p>
                                                                 <p className="italic">
-                                                                    {" "}{solutions[activeIndex].study.timeframe}
+                                                                    {" "}{solutions[activeIndex].study?.timeframe}
                                                                 </p>
                                                             </div>
 
@@ -346,7 +348,7 @@ export const GamesContent = () => {
                                                                     Location:
                                                                 </p>
                                                                 <p className="italic">
-                                                                    {" "}{solutions[activeIndex].study.location}
+                                                                    {" "}{solutions[activeIndex].study?.location}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -359,7 +361,7 @@ export const GamesContent = () => {
                                                                     Population:
                                                                 </p>
                                                                 <p className="italic">
-                                                                    {" "}{solutions[activeIndex].study.population}
+                                                                    {" "}{solutions[activeIndex].study?.population}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -372,7 +374,7 @@ export const GamesContent = () => {
                                                                     Study Details:
                                                                 </p>
                                                                 <p className="italic text-center lg:text-left">
-                                                                    {" "}{solutions[activeIndex].study.details}
+                                                                    {" "}{solutions[activeIndex].study?.details}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -385,7 +387,7 @@ export const GamesContent = () => {
                                                                     Principal Investigator:
                                                                 </p>
                                                                 <p className="italic">
-                                                                    {" "}{solutions[activeIndex].study.investigator}
+                                                                    {" "}{solutions[activeIndex].study?.investigator}
                                                                 </p>
                                                             </div>
 
@@ -394,7 +396,7 @@ export const GamesContent = () => {
                                                                     Study Director:
                                                                 </p>
                                                                 <p className="italic">
-                                                                    {" "}{solutions[activeIndex].study.director}
+                                                                    {" "}{solutions[activeIndex].study?.director}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -407,7 +409,7 @@ export const GamesContent = () => {
                                                                     Evaluator:
                                                                 </p>
                                                                 <p className="italic">
-                                                                    {" "}{solutions[activeIndex].study.evaluator}
+                                                                    {" "}{solutions[activeIndex].study?.evaluator}
                                                                 </p>
                                                             </div>
 
@@ -416,7 +418,7 @@ export const GamesContent = () => {
                                                                     Funder:
                                                                 </p>
                                                                 <p className="italic">
-                                                                    {" "}{solutions[activeIndex].study.funder}
+                                                                    {" "}{solutions[activeIndex].study?.funder}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -508,7 +510,9 @@ export const GamesContent = () => {
                     </div>
 
                     <div className="relative hidden lg:flex justify-center items-center w-full max-h-150 aspect-square border-white border-2 overflow-hidden rounded-lg">
-                        <img
+                        <Image
+                            width={1080}
+                            height={720}
                             src={solutions[activeIndex].slides[activeSlide].imageUrl}
                             alt={`${solutions[activeIndex].title} - ${solutions[activeIndex].slides[activeSlide].caption} Screenshot`}
                             className="object-cover object-center h-full w-full overflow-hidden"
