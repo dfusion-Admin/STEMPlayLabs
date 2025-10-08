@@ -131,7 +131,7 @@ export const Navbar = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, re
                                 leaveFrom=" translate-x-0"
                                 leaveTo="translate-x-50"
                             >
-                                <PopoverPanel className={`bg-black absolute h-fit duration-1000 top-13 -right-8 w-fit  rounded-l-lg focus:outline-none`}>
+                                <PopoverPanel className={`${showHomeButton ? 'rounded-bl-lg' : 'rounded-l-lg'} bg-black absolute h-fit duration-1000 top-13 -right-8 w-fit focus:outline-none`}>
                                     <ul className="flex flex-col">
                                         {navLinks.map((link,i) => (
                                             <button 
