@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { RefObject } from "react";
 import { ListHeader } from "./Headers";
-import { on } from "events";
+import Image from "next/image";
 
 interface FooterProps {
     homeRef: RefObject<HTMLDivElement | null>;
@@ -13,7 +13,7 @@ interface FooterProps {
     contactRef: RefObject<HTMLDivElement | null>;
 }
 
-export const Footer = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, researchRef, contactRef} : FooterProps) => {
+export const Footer = ({ aboutRef, impactRef, researchRef, contactRef} : FooterProps) => {
     const socialLinks = [
         {
             label: "Instagram",
@@ -121,7 +121,13 @@ export const Footer = ({ homeRef, aboutRef, challengeRef, gameRef, impactRef, re
                         {socialLinks.map((link, idx) => (
                             <li key={idx} className="inline-block">
                                 <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:brightness-125 duration-300 rounded-full overflow-hidden h-8 w-8 flex items-center justify-center bg-white">
-                                    <img src={link.icon} alt={`${link.label} Icon`} className="h-8 w-8" />
+                                    <Image
+                                        width={1080}
+                                        height={720}
+                                        src={link.icon}
+                                        alt={`${link.label} Icon`}
+                                        className="h-8 w-8"
+                                    />
                                 </a>
                             </li>
                         ))}

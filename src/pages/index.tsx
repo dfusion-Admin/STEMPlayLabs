@@ -8,12 +8,11 @@ import { GamesContent } from "@/components/Content/GamesContent";
 import { ImpactContent } from "@/components/Content/ImpactContent";
 import { ResearchContent } from "@/components/Content/ResearchContent";
 import { ContactContent } from "@/components/Content/ContactContent";
-import { faCar, faCartShopping, faWandMagicSparkles } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faWandMagicSparkles } from "@fortawesome/free-solid-svg-icons";
 import { PartnerContent } from "@/components/Content/PartnerContent";
-import { useEffect, useState } from "react";
-import FloatingIcons from "@/components/FloatingIcons";
 import { TestimonialContent } from "@/components/Content/TestimonialContent";
 import { AboutUsContent } from "@/components/Content/AboutUsContent";
+import Image from "next/image";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement | null>(null);
@@ -97,7 +96,9 @@ export default function Home() {
         
         <div className="w-full h-full z-10 relative flex flex-col lg:flex-row items-center justify-center gap-4">
           <div className="flex items-center justify-center z-10">
-            <img
+            <Image
+              width={1080}
+              height={720}
               src="/images/STEMPlay Labs Logo Vertical 1 Color White.png"
               alt="STEMPlay Labs Logo"
               className="w-52 sm:w-2/3 md:w-4/5 lg:w-full min-w-48 max-w-96 aspect-auto" 
