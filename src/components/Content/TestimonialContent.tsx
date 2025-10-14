@@ -54,11 +54,7 @@ export const TestimonialContent = () => {
             role: "Student"
         }
     ];
-
-    useEffect(() => {
-        console.log("Current Index:", currentIndex);
-    }, [currentIndex]);
-
+    
     return (
         <div className="relative flex flex-col justify-start lg:flex-row gap-4 h-100 lg:h-auto w-full">
             <div className="flex flex-col items-center justify-center z-10 w-full">

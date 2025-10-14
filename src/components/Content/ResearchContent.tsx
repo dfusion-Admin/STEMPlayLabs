@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { STEMButton } from "../Buttons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -55,10 +55,75 @@ export const ResearchContent = () => {
         }
     ]
 
+    const category = "1417";
+    const [posts, setPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        async function fetchPosts() {
+            const res = await fetch(`/api/wp-posts?categoryId=${category}`);
+            const data = await res.json();
+
+            console.log('posts fetched:', data);
+            setPosts(data.slice(0, 6)); // Limit to 6 posts for preview
+            setLoading(false);
+        }
+
+        fetchPosts();
+    }, [category]);
+
+    if (loading) return <div>Loading...</div>;
+
     return (
         <div className="w-full flex flex-col gap-8">
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {content.map((item, idx) => (
+            <ul className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${posts.length >= 3 ? "3" : posts.length} gap-4`}>
+                {posts.length > 0 ? (
+                    posts.map((post) => (
+                        <li
+                            key={post.id}
+                            className={`${posts.length > 1 ? "flex-col" : "flex-row"} col-span-1 bg-white flex rounded-lg p-4 gap-2 md:gap-4 hover:shadow-lg duration-300`}
+                        >
+                            {post.image && (
+                                <img
+                                    src={post.image.src}
+                                    alt={post.image.alt}
+                                    className={`${posts.length > 1 ? "h-48" : "h-60"} w-full object-cover rounded-lg`}
+                                />  
+                            )}
+
+                            <div className={`${posts.length > 1 ? "items-start" : "items-end"} flex flex-col`}>
+                                <h3 className="font-semibold text-lg" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                                
+                                <div className="flex justify-between items-center text-sm ">
+                                    {/* <ul className="w-full flex justify-between">
+                                        {post.tags && post.tags.map((tag: any, i: number) => (
+                                            <li key={`tag-${i}`}
+                                                className="inline mr-2 text-xs bg-gray-light px-2 py-1 rounded-full text-nowrap"
+                                            >
+                                                {tag}
+                                            </li>
+                                        ))}
+                                    </ul> */}
+                                </div>
+                                
+                                <p className="flex-1 py-4 border-t-2 border-gray-light" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+
+                                <div className="flex justify-between w-full items-center text-sm text-gray">
+                                    <p className="italic">
+                                        {new Date(post.date).toLocaleDateString()}
+                                    </p>
+
+                                    <Link href={post.link} target="_blank" className="text-right text-blue hover:brightness-75 font-bold duration-300">
+                                        Read More
+                                    </Link>
+                                </div>
+                            </div>
+                        </li>
+                    ))
+                ) : (
+                    <p>No posts available.</p>
+                )}
+                {/* {content.map((item, idx) => (
                     <li key={idx} className="flex flex-col bg-white rounded-lg p-4 gap-2 hover:shadow-lg duration-300">
                         <h3 className="font-semibold text-lg">
                             {item.title}
@@ -90,7 +155,7 @@ export const ResearchContent = () => {
                             </Link>
                         </div>
                     </li>
-                ))}
+                ))} */}
             </ul>
 
             <div className="flex justify-center w-full">
