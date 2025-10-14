@@ -1,9 +1,10 @@
+import { Post, PostImage } from "@/utils/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const WP_BASE = "https://dfusioninc.com";
 
 /** Safely pick a good image size from the embedded media object */
-function extractFeaturedImage(media: any) {
+function extractFeaturedImage(media: PostImage | null): PostImage | null {
   if (!media) return null;
 
   // Prefer a medium/large size if available, fall back to original
@@ -59,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const posts = await wpRes.json();
 
     // Normalize the response: lift featured image into a simple `image` field.
-    const normalized = posts.map((p: any) => {
+    const normalized = posts.map((p: Post) => {
       const media = p?._embedded?.["wp:featuredmedia"]?.[0] || null;
       const image = extractFeaturedImage(media);
 
@@ -76,8 +77,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     return res.status(200).json(normalized);
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Error fetching posts:", err);
-    return res.status(500).json({ error: err.message || "Unknown error" });
+    if (err instanceof Error) {
+      return res.status(500).json({ error: err.message });
+    }
+    return res.status(500).json({ error: "Unknown error" });
   }
 }

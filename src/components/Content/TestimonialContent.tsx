@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Typewriter } from "nextjs-simple-typewriter";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export const TestimonialContent = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
