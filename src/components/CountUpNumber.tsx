@@ -27,7 +27,7 @@ export const CountUpNumber = ({ value, unit, onEndCount }: CountUpNumberProps) =
         }, 50);
 
         return () => clearInterval(timer);
-    }, [onEndCount, value]);
+    }, [value]);
 
     return (
         <h3 className="text-3xl sm:text-4xl font-bold text-white font-kallisto-heavy">
