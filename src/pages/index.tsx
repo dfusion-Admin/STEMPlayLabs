@@ -47,7 +47,7 @@ export default function Home() {
     },
     {
       title: "About Us",
-      subtitle: "Learn more about STEM Play Labs, our mission, and the passionate team dedicated to transforming STEM education.",
+      subtitle: "Learn more about STEMPlay Labs, our mission, and the passionate team dedicated to transforming STEM education.",
       ref: aboutRef,
       theme: "bg-white text-black-light",
       content: <AboutUsContent />

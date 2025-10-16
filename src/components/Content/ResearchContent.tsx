@@ -71,7 +71,7 @@ export const ResearchContent = () => {
                     dark
                     label="View All Posts"
                     icon={faMagnifyingGlass}
-                    action={() => { window.open("https://dfusioninc.com/insights/", "_blank") }}
+                    action={() => { window.open("https://vtl.sey.mybluehost.me/website_ace37854", "_blank") }}
                 />
             </div>
         </div>
