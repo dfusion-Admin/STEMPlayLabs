@@ -76,8 +76,8 @@ export const Footer = ({ aboutRef, impactRef, researchRef, contactRef} : FooterP
     ]
 
     return (
-        <footer className="w-full flex flex-col bg-black px-8 py-4 gap-8">
-            <div className="flex flex-col lg:flex-row gap-8 justify-between w-full py-8">
+        <footer className="w-full flex flex-col justify-center items-center bg-black py-4 gap-8">
+            <div className="flex flex-col lg:flex-row gap-8 justify-between w-full lg:max-w-4/5 py-8">
                 <ul className="md:basis-3/4 w-full flex flex-col sm:flex-row justify-center gap-4 md:gap-0">
                     {footerLinks.map((section, idx) => (
                         <li key={idx} className={`flex flex-col items-center text-center flex-1 px-4 gap-4`}>

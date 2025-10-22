@@ -188,7 +188,7 @@ export const GamesContent = () => {
     }, [solutions, activeIndex, activeSlide]);
 
     return (
-        <div className="flex flex-col lg:flex-row justify-center items-start w-full ">
+        <div className="flex flex-col lg:flex-row justify-center items-start w-full lg:max-w-4/5">
             <ul className="flex flex-row lg:flex-col gap-2  justify-between items-start">
                 {solutions.map((solution, idx) => (
                     <li key={idx} className="flex aspect-square w-fit items-center justify-center"> 
@@ -216,7 +216,7 @@ export const GamesContent = () => {
                                 <Link
                                     href={solutions[activeIndex].link}
                                     target="_blank"
-                                    className="text-4xl text-center font-bold  text-white hover:text-blue font-kallisto-heavy uppercase"
+                                    className="text-3xl text-center font-bold  text-white hover:text-blue font-kallisto-heavy uppercase"
                                 >
                                     {solutions[activeIndex].title}
                                 </Link>

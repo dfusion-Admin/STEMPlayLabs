@@ -4,6 +4,7 @@ import Image from "next/image";
 
 interface NavbarProps {
     homeRef: RefObject<HTMLDivElement | null>;
+    challengeRef: RefObject<HTMLDivElement | null>;
     aboutRef: RefObject<HTMLDivElement | null>;
     gameRef: RefObject<HTMLDivElement | null>;
     impactRef: RefObject<HTMLDivElement | null>;
@@ -11,7 +12,7 @@ interface NavbarProps {
     contactRef: RefObject<HTMLDivElement | null>;
 }
 
-export const Navbar = ({ homeRef, aboutRef, gameRef, impactRef, researchRef, contactRef} : NavbarProps) => {
+export const Navbar = ({ homeRef, challengeRef, aboutRef, gameRef, impactRef, researchRef, contactRef} : NavbarProps) => {
     const [showHomeButton, setShowHomeButton] = useState(false);
     const [navbarColor, setNavbarColor] = useState("backdrop-blur-md bg-purple/0");
     
@@ -47,6 +48,7 @@ export const Navbar = ({ homeRef, aboutRef, gameRef, impactRef, researchRef, con
         const handleScroll = () => {
             const sections = [
                 { ref: homeRef, color: "backdrop-blur-md bg-purple/0" },
+                { ref: challengeRef, color: "bg-white shadow-lg" },
                 { ref: gameRef, color: "bg-white shadow-lg" },
                 { ref: impactRef, color: "bg-white shadow-lg" },
                 { ref: researchRef, color: "bg-white shadow-lg" },
@@ -73,11 +75,11 @@ export const Navbar = ({ homeRef, aboutRef, gameRef, impactRef, researchRef, con
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [homeRef, gameRef, impactRef, researchRef, contactRef]);
+    }, [homeRef, challengeRef, gameRef, impactRef, researchRef, contactRef]);
 
     return (
-        <nav className="fixed z-50 top-0 left-0 w-full flex ">
-            <div className="relative z-10 px-8 w-full flex justify-between items-center ">
+        <nav className="fixed z-50 top-0 left-0 w-full flex justify-center">
+            <div className="relative z-10 px-8 w-full lg:w-4/5 self-center flex justify-between items-center ">
                 <button
                     onClick={() => { homeRef.current?.scrollIntoView({ behavior: 'smooth' }) }}
                     className={`gap-2 shrink-0 py-2 hover:curor-pointer w-fit`}
@@ -99,7 +101,7 @@ export const Navbar = ({ homeRef, aboutRef, gameRef, impactRef, researchRef, con
                         >
                             <button 
                                 onClick={link.onClick}
-                                className={`${showHomeButton ? "text-blue hover:brightness-75" : "text-white hover:text-blue hover:brightness-125"}  font-bold  px-4 py-2 rounded-full duration-300 hover:cursor-pointer`}
+                                className={`${showHomeButton ? "text-blue hover:brightness-75" : "text-white hover:text-blue hover:brightness-125"} text-xs lg:text-sm font-bold px-2 lg:px-4 py-2 rounded-full duration-300 hover:cursor-pointer`}
                             >
                                 {link.label}
                             </button>
