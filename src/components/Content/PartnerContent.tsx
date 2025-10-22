@@ -4,15 +4,20 @@ import React from "react";
 
 export const PartnerContent = () => {
     const partners = [
+        {  
+            label: "National Institute of Health",
+            logo: "/images/Partners/Logo for National Institute of Health, Institute of General Medical Sciences STEMadium funder.svg",
+            link: "https://www.nih.gov/"
+        },
         {
             label: "Department of Education",
             logo: "/images/Partners/Seal_of_the_United_States_Department_of_Education.png",
             link: "https://www.ed.gov/"
         },
-        {  
-            label: "National Institute of Health",
-            logo: "/images/Partners/Logo for National Institute of Health, Institute of General Medical Sciences STEMadium funder.svg",
-            link: "https://www.nih.gov/"
+        {
+            label: "NIGMS",
+            logo: "/images/Partners/NIGMS.svg",
+            link: "https://www.nigms.nih.gov/"
         },
         {
             label: "NIEHS",
@@ -20,13 +25,8 @@ export const PartnerContent = () => {
             link: "https://www.niehs.nih.gov/"
         },
         {
-            label: "NIGMS",
-            logo: "/images/Partners/NIGMS.png",
-            link: "https://www.nigms.nih.gov/"
-        },
-        {
             label: "NIH Office of Director",
-            logo: "/images/Partners/nih Office of Director.png",
+            logo: "/images/Partners/nih Office of Director.svg",
             link: "http://nih.gov/institutes-nih/nih-office-director"
         },
     ];

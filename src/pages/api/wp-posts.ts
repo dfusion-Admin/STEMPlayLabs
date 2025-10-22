@@ -1,7 +1,8 @@
 import { Post, PostImage } from "@/utils/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const WP_BASE = "https://dfusioninc.com";
+const WP_BASE = "https://blog.stemplaylabs.org";
+// const WP_BASE = "https://dfusioninc.com";
 
 /** Safely pick a good image size from the embedded media object */
 function extractFeaturedImage(media: PostImage | null): PostImage | null {
@@ -32,7 +33,7 @@ function extractFeaturedImage(media: PostImage | null): PostImage | null {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { categoryId, perPage = "5", page = "1" } = req.query;
+    const { categoryId, perPage = "3", page = "1" } = req.query;
 
     const id = Number(categoryId);
     if (!id || Number.isNaN(id)) {
@@ -42,9 +43,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // IMPORTANT: use `_embed=1` so featured media comes inline
     // (We omit _fields here to ensure _embedded is included.)
     const qs = new URLSearchParams({
-      per_page: String(perPage),
-      page: String(page),
-      categories: String(id),
+      // per_page: String(perPage),
+      // page: String(page),
+      // categories: String(id),
       _embed: "1",
     });
 

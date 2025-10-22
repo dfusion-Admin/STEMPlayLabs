@@ -17,6 +17,7 @@ export const PageLayout = ({ children, homeRef, aboutRef, challengeRef, gameRef,
         <main className="w-full min-h-screen flex flex-col text-black-light">
             <Navbar
                 homeRef={homeRef}
+                challengeRef={challengeRef}
                 aboutRef={aboutRef}
                 gameRef={gameRef}
                 impactRef={impactRef}

@@ -28,7 +28,7 @@ export const ContactContent = () => {
     ]
     
     return (
-        <ul className="flex flex-col lg:flex-row gap-4 w-full">
+        <ul className="flex flex-col lg:flex-row gap-4 w-full lg:max-w-4/5">
             {contactItems.map((item, idx) => (
                 <li key={idx} className="flex flex-col flex-1 items-center bg-gray-light rounded-lg p-4 gap-4 hover:shadow-lg duration-300">
                     <h3 className="font-semibold text-2xl text-center">

@@ -21,7 +21,7 @@ export const ChallengeContent = () => {
     ]
 
     return (
-        <ul className="flex flex-col md:flex-row justify-between w-full gap-4">
+        <ul className="flex flex-col md:flex-row justify-between w-full lg:max-w-4/5 gap-4">
             {challengeStats.map((stat, idx) => (
                 <li key={idx} className="group/challenge relative flex w-full md:w-auto flex-col items-center gap-2 rounded-lg bg-white">
                     <div className="group-hover/challenge:bottom-4 bottom-0 relative w-full h-full flex flex-col justify-center items-center gap-4 bg-white z-10 p-4 rounded-md duration-300">

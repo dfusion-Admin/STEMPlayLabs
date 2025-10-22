@@ -28,7 +28,7 @@ export const ImpactContent = () => {
     ]
 
     return (
-        <ul onMouseEnter={() => setStartAnimation(true)} className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 flex-1 w-full gap-4">
+        <ul onMouseEnter={() => setStartAnimation(true)} className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 flex-1 w-full lg:max-w-4/5 gap-4">
             {impactStats.map((stat, idx) => (
                 <li key={idx} className="flex flex-col w-full md:w-auto min-h-54 justify-between items-center gap-4 p-4 rounded-lg bg-periwinkle">
                     {idx !== impactStats.length - 1 ? (
