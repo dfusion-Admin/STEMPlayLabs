@@ -13,6 +13,7 @@ import { PartnerContent } from "@/components/Content/PartnerContent";
 import { TestimonialContent } from "@/components/Content/TestimonialContent";
 import { AboutUsContent } from "@/components/Content/AboutUsContent";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement | null>(null);
@@ -95,7 +96,7 @@ export default function Home() {
         <div ref={homeRef} className="absolute top-0 left-0 opacity-0" />
         
         <div className="w-full h-full z-10 relative flex flex-col lg:flex-row items-center justify-center gap-4">
-          <div className="flex items-center justify-center z-10">
+          <div className="flex flex-col items-center justify-center z-10">
             <Image
               width={1080}
               height={720}
@@ -103,6 +104,15 @@ export default function Home() {
               alt="STEMPlay Labs Logo"
               className="w-52 sm:w-2/3 md:w-4/5 lg:w-full min-w-48 max-w-96 aspect-auto" 
             />
+
+            <button
+              onClick={() => { window.open("https://www.dfusioninc.com/", "_blank") }}  
+              className="bg-white/20 w-4/5 rounded-full text-center py-2 hover:cursor-pointer hover:bg-white/30 duration-300"
+            >
+              <p className={`text-xs text-white font-bold`}>
+                  Powered by dfusion, Inc.
+              </p>
+            </button>
           </div>
 
           <div className="lg:flex-1 flex flex-col items-center justify-center gap-4 lg:gap-12 text-center text-white z-10 bg-white/0 lg:bg-white/10 p-4 lg:p-8 rounded-xl">
