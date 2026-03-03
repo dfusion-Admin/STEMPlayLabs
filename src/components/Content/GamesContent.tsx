@@ -169,7 +169,7 @@ export const GamesContent = () => {
 
             return () => clearTimeout(resetTimer);
         }
-        setActiveSlide(0);
+        // setActiveSlide(0);
 
         if (activeSlide < solutions[activeIndex].slides.length - 1) {
             const slideTimer = setTimeout(() => {

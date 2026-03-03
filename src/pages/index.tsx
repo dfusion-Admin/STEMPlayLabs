@@ -5,10 +5,11 @@ import { useRef } from "react";
 import { ChallengeContent } from "@/components/Content/ChallengeContent";
 import { SectionLayout } from "@/components/Layouts/SectionLayout";
 import { GamesContent } from "@/components/Content/GamesContent";
+import { TeachingResourcesContent } from "@/components/Content/TeachingResourcesContent";
 import { ImpactContent } from "@/components/Content/ImpactContent";
 import { ResearchContent } from "@/components/Content/ResearchContent";
 import { ContactContent } from "@/components/Content/ContactContent";
-import { faCartShopping, faWandMagicSparkles } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faFolderPlus, faWandMagicSparkles } from "@fortawesome/free-solid-svg-icons";
 import { PartnerContent } from "@/components/Content/PartnerContent";
 import { TestimonialContent } from "@/components/Content/TestimonialContent";
 import { AboutUsContent } from "@/components/Content/AboutUsContent";
@@ -38,6 +39,13 @@ export default function Home() {
       ref: gameRef,
       theme: "bg-white text-black-light",
       content: <GamesContent />
+    },
+    {
+      title: "Our Teaching Resources",
+      subtitle: "Lesson plans and activities for real-world application and project based learning in STEM",
+      theme: "bg-blue-light text-black-light",
+      fullWidth: true,
+      content: <TeachingResourcesContent />
     },
     {
       title: "Proven Educational Impact",
@@ -130,6 +138,13 @@ export default function Home() {
                 icon={faCartShopping}
                 label="Shop Our Games"
                 action={() => { gameRef.current?.scrollIntoView({ behavior: 'smooth' }) }}
+              />
+
+              <STEMButton
+                hollow
+                icon={faFolderPlus}
+                label="Shop Resources"
+                action={() => { window.open("https://www.teacherspayteachers.com/store/stemplay-labs", "_blank") }}
               />
 
               <STEMButton
