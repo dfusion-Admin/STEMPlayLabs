@@ -73,7 +73,7 @@ export const TeachingResourcesContent = () => {
                         <p className="text-white"><span className="font-bold">FREE</span> until March 18</p>
                     </div>
                     <p className="text-center lg:text-right">
-                        Experience the engaging, real-world application of our curriculum with a free basketball-themed lesson plan designed to get your students moving and learning.
+                        Experience the engaging, real-world application of our curriculum with a free basketball-themed lesson plan designed to get your students moving and learning
                     </p>
 
                     <STEMButton
