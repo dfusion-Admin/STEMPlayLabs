@@ -45,6 +45,10 @@ export const Footer = ({ aboutRef, impactRef, researchRef, contactRef} : FooterP
             label: "Resources",
             links: [
                 {
+                    label: "Add-On Resources",
+                    url: "https://www.teacherspayteachers.com/store/stemplay-labs"
+                },
+                {
                     label: "Research & Insights",
                     onClick: () => { researchRef.current?.scrollIntoView({ behavior: 'smooth' }) }
                 },
@@ -68,7 +72,7 @@ export const Footer = ({ aboutRef, impactRef, researchRef, contactRef} : FooterP
                 },
                 {
                     label: "Contact Us",
-                    onClick: () => { contactRef.current?.scrollIntoView({ behavior: 'smooth' }) }    
+                    onClick: () => { window.open("mailto:stemplaylabs@dfusioninc.com", "_blank") }
                 },
                 // { label: "Partnerships", url: "#partnerships", external: false },
             ]
