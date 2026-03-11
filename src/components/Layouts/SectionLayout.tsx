@@ -3,7 +3,8 @@ import { SectionHeader } from "../Headers";
 import FloatingIcons from "../FloatingIcons";
 
 interface SectionLayoutProps {
-    children: ReactNode,
+    children: ReactNode;
+    id: string;
     ref?: RefObject<HTMLDivElement | null>;
     title?: string;
     subtitle?: string;
@@ -11,9 +12,10 @@ interface SectionLayoutProps {
     theme: string;
 }
 
-export const SectionLayout = ( { children, ref, theme, title, fullWidth, subtitle } : SectionLayoutProps ) => {
+export const SectionLayout = ( { children, id, ref, theme, title, fullWidth, subtitle } : SectionLayoutProps ) => {
     return (
         <section
+            id={id}
             ref={ref}
             className={`${theme} ${!fullWidth && 'px-8'} group relative w-full py-24 gap-8 flex flex-col items-center justify-center overflow-hidden`}
         >
