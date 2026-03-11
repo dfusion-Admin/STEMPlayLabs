@@ -27,6 +27,7 @@ export default function Home() {
   
   const sections=[
     {
+      id: "challenge",
       title: "The Challenge We're Solving",
       subtitle: "Traditional education methods are failing to engage students in STEM subjects, creating gaps in learning and limiting future opportunities.",
       ref: challengeRef,
@@ -34,6 +35,7 @@ export default function Home() {
       content: <ChallengeContent />
     },
     {
+      id: "games",
       title: "Our Game-Based Solutions",
       subtitle: "Evidence-based educational games that make STEM learning fun, relevant, and accessible for all students.",
       ref: gameRef,
@@ -41,6 +43,7 @@ export default function Home() {
       content: <GamesContent />
     },
     {
+      id: "teaching-resources",
       title: "Our Teaching Resources",
       subtitle: "Lesson plans and activities for real-world application and project based learning in STEM",
       theme: "bg-blue-light text-black-light",
@@ -48,6 +51,7 @@ export default function Home() {
       content: <TeachingResourcesContent />
     },
     {
+      id: "impact",
       title: "Proven Educational Impact",
       subtitle: "Our games deliver measurable results that advance learnig equity and inspire STEM career engagement.",
       ref: impactRef,
@@ -55,6 +59,7 @@ export default function Home() {
       content: <ImpactContent />
     },
     {
+      id: "about-us",
       title: "About Us",
       subtitle: "Learn more about STEMPlay Labs, our mission, and the passionate team dedicated to transforming STEM education.",
       ref: aboutRef,
@@ -62,6 +67,7 @@ export default function Home() {
       content: <AboutUsContent />
     },
     {
+      id: "research",
       title: "Research & Insights",
       subtitle: "Discover the latest findings from our evidence-based research and practical insights for transforming STEM education.",
       ref: researchRef,
@@ -69,6 +75,7 @@ export default function Home() {
       content: <ResearchContent />
     },
     {
+      id: "partners",
       title: "Our Funding Partners",
       subtitle: "We are proud to collaborate with leading organizations dedicated to advancing STEM education and equity.",
       theme: "bg-blue-light text-black-light",
@@ -76,12 +83,14 @@ export default function Home() {
       content: <PartnerContent />
     },
     {
+      id: "testimonials",
       title: "Testimonials",
       // subtitle: "Hear from educators and students whose lives have been transformed by our engaging STEM games.",
       theme: "bg-gray-light text-black-light",
       content: <TestimonialContent />
     },
     {
+      id: "contact",
       title: "Ready to Transform Learning?",
       subtitle: "Join thousands of educators and students already using STEMPlay Labs games to engage and improve learning outcomes.",
       ref: contactRef,
@@ -174,6 +183,7 @@ export default function Home() {
 
       {sections.map((section, idx) => (
         <SectionLayout
+          id={section.id}
           key={idx}
           title={section.title}
           subtitle={section.subtitle}
